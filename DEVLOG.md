@@ -39,19 +39,42 @@
 
 ---
 
-## Day 2 — YYYY-MM-DD
+## Day 2 — 2025-05-09
 
-**Hours worked:** X
+**Hours worked:** 6
 
-**What I did:** ...
+**What I did:**
+- Built the complete landing page (`src/app/page.tsx`) with hero section, animated stats bar, how-it-works steps, feature grid, social proof cards, and footer — all responsive
+- Built the full spend input form (`src/app/audit/page.tsx`) supporting all 8 required AI tools with per-tool plan selectors, monthly spend input, seat count, and use case — form state persists to localStorage on every keystroke so nothing is lost on refresh
+- Built the results page (`src/app/results/page.tsx`) with animated savings counter (counts up from 0), per-tool breakdown cards with recommendation badges, a Recharts bar chart comparing current vs optimized spend, AI summary card with loading skeleton, Credex CTA (only shown when savings exceed $500/month), share link copy button, and inline lead capture form
+- Built the public share page (`src/app/share/[id]/page.tsx` + `SharePageClient.tsx`) — shows sanitized audit data with no PII, full OG/Twitter meta tags per audit
+- Built all 4 API routes:
+  - `/api/audit` — saves audit to Supabase, returns nanoid share ID
+  - `/api/leads` — captures email leads with honeypot spam protection and in-memory rate limiting, sends confirmation email via Resend
+  - `/api/summary` — calls Groq llama-3.1-70b-versatile, returns ~100 word personalized summary, falls back to template on failure
+  - `/api/og` — generates dynamic Open Graph images per audit using Next.js ImageResponse
+- Wrote the complete Supabase schema (`supabase-schema.sql`) with audits and leads tables, Row Level Security policies, and indexes
+- Wrote `PROMPTS.md` documenting the full Groq prompt, system message, what I tried that failed, and why AI is NOT used for the audit math
+- Wrote `TESTS.md` listing all 16 unit tests with descriptions and run instructions
+- Updated `src/app/layout.tsx` with full SEO metadata, Open Graph, and Twitter card tags
 
-**What I learned:** ...
+**What I learned:**
+- Next.js App Router requires `"use client"` at the top of any component that uses `useState`, `useEffect`, or browser APIs like `localStorage` — server components cannot use these
+- The `share/[id]` folder needs literal square brackets in the folder name — Next.js uses this for dynamic route params
+- Groq's llama-3.1-70b returns responses in under 2 seconds which is fast enough to feel instant — no need for streaming for a 100-word summary
+- Honeypot fields for spam protection must be visually hidden with CSS but NOT `display:none` — bots that render CSS will skip hidden fields, but dumb bots fill everything
+- `nanoid(8)` generates 8-character URL-safe IDs with ~281 trillion combinations — more than enough for share URLs
 
-**Blockers / what I'm stuck on:** ...
+**Blockers / what I'm stuck on:**
+- Resend requires a verified domain for the `from` address in production — using `onboarding@resend.dev` for development which works fine on free tier
+- The `@vercel/og` ImageResponse uses edge runtime which has limitations — cannot use Node.js APIs like `Buffer` directly in the OG route
+- Need to add Vercel environment variables before the deployed URL will work end-to-end
 
-**Plan for tomorrow:** ...
-
----
+**Plan for tomorrow:**
+- Add remaining markdown docs: ARCHITECTURE.md, GTM.md, ECONOMICS.md, LANDING_COPY.md, METRICS.md, README.md
+- Start user interviews — will DM 5 people today so I have responses by Day 4
+- Run Lighthouse audit on deployed URL and fix any score below 85
+- Add the `globals.css` base styles if Tailwind isn't applying correctly
 
 ## Day 3 — YYYY-MM-DD
 
