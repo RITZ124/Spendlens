@@ -76,19 +76,64 @@
 - Run Lighthouse audit on deployed URL and fix any score below 85
 - Add the `globals.css` base styles if Tailwind isn't applying correctly
 
-## Day 3 — YYYY-MM-DD
+## Day 3 — 2025-05-10
 
-**Hours worked:** X
+**Hours worked:** 3
 
-**What I did:** ...
+**What I did:**
+- Copied all page files into correct Next.js App Router folder structure:
+  `src/app/page.tsx`, `src/app/layout.tsx`, `src/app/audit/page.tsx`,
+  `src/app/results/page.tsx`, `src/app/share/[id]/page.tsx`,
+  `src/app/share/[id]/SharePageClient.tsx`
+- Added all 4 API routes: `/api/audit`, `/api/leads`, `/api/summary`, `/api/og`
+- Ran Supabase schema SQL — `audits` and `leads` tables created with RLS policies
+- Filled in `.env.local` with real Supabase URL, anon key, service role key,
+  Groq API key, and Resend API key
+- Installed all dependencies: `@supabase/supabase-js`, `groq-sdk`, `nanoid`,
+  `resend`, `recharts`, `framer-motion`, `vitest`, `@vitejs/plugin-react`
+- Added shadcn/ui components: button, card, input, label, select, badge, progress
+- Fixed `tsconfig.json` to include `paths: { "@/*": ["./src/*"] }` for imports
+- Added `"test"` and `"typecheck"` scripts to `package.json`
+- Ran `npm run test` — all 16 audit engine tests passing
+- Ran `npm run dev` — app running locally at localhost:3000
+- Tested full flow: landing page → audit form → results page → share link
+- Verified Supabase: audit row saved, lead row saved after email submit
+- Hit build error on Vercel: `og/route.ts` had JSX inside a `.ts` file
+  (should be `.tsx`) — Turbopack threw `Expected '>', got 'ident'`
+- Debugged: the file was renamed locally but git didn't track the rename properly
+- Fixed by running `git rm src/app/api/og/route.ts` then
+  `git add src/app/api/og/route.tsx` to force git to register the rename
+- Redeployed to Vercel — build passed after the fix
+- Added all environment variables to Vercel dashboard under
+  Settings → Environment Variables
 
-**What I learned:** ...
+**What I learned:**
+- Next.js (and Turbopack) strictly requires `.tsx` extension for any file
+  containing JSX — `.ts` files cannot have angle-bracket syntax even if
+  the content is valid React. This is different from how some bundlers handle it
+- Git does not always detect file renames automatically, especially when the
+  old and new filenames differ only in extension — `git rm` + `git add` is
+  the reliable way to force it
+- Vercel reads environment variables at build time — adding them to `.env.local`
+  only is not enough; they must also be added in the Vercel dashboard or the
+  deployed app will have undefined keys
+- The `NEXT_PUBLIC_` prefix on Supabase URL and anon key is required because
+  those values are accessed in client components — without the prefix, Next.js
+  treats them as server-only and they come through as `undefined` in the browser
 
-**Blockers / what I'm stuck on:** ...
+**Blockers / what I'm stuck on:**
+- Need to add screenshots to README.md now that the app is live on Vercel
+- User interviews not started yet — will reach out to 5 people today over
+  WhatsApp and LinkedIn so I have responses by Day 5
+- Need to verify Lighthouse scores on the live Vercel URL
 
-**Plan for tomorrow:** ...
-
----
+**Plan for tomorrow:**
+- Run Lighthouse audit on deployed URL (Chrome DevTools → Lighthouse tab)
+- Fix any score below 85 Performance / 90 Accessibility
+- Take screenshots of all 4 pages for README.md
+- Start reaching out for user interviews
+- Write Day 4 DEVLOG entry
+- Polish results page UI — check mobile responsiveness
 
 ## Day 4 — YYYY-MM-DD
 
