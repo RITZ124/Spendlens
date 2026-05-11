@@ -135,19 +135,31 @@
 - Write Day 4 DEVLOG entry
 - Polish results page UI — check mobile responsiveness
 
-## Day 4 — YYYY-MM-DD
+## Day 4 — 2025-05-11
 
 **Hours worked:** X
 
-**What I did:** ...
+**What I did:**
+- Verified full end-to-end flow on live Vercel deployment
+- Ran Lighthouse audit on deployed URL:
+  Performance: XX, Accessibility: XX, Best Practices: XX
+- [describe any fixes you made based on Lighthouse]
+- Added 4 screenshots to public/screenshots/ folder
+- Updated README.md with actual screenshots and live URL
+- Reached out to 5 people for user interviews over WhatsApp/LinkedIn
+- [add anything else you did]
 
-**What I learned:** ...
+**What I learned:**
+- [something real you learned today]
 
-**Blockers / what I'm stuck on:** ...
+**Blockers / what I'm stuck on:**
+- Waiting for user interview responses
+- [anything else]
 
-**Plan for tomorrow:** ...
-
----
+**Plan for tomorrow:**
+- Conduct user interviews as responses come in
+- Fix any remaining Lighthouse issues
+- Polish mobile UI on results page
 
 ## Day 5 — YYYY-MM-DD
 
