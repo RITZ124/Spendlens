@@ -371,6 +371,7 @@ export default function ResultsPage() {
               </a>
               <button
                 onClick={() => document.getElementById("lead-capture")?.scrollIntoView({ behavior: "smooth" })}
+                aria-label="Get report via email"
                 className="inline-flex items-center justify-center gap-2 border border-gray-700 text-white rounded-xl px-6 py-3 hover:border-gray-500 transition-colors text-sm"
               >
                 Get report via email
@@ -388,6 +389,7 @@ export default function ResultsPage() {
             {shareId ? (
               <button
                 onClick={handleCopyLink}
+                aria-label="Copy share link"
                 className="w-full flex items-center justify-center gap-2 bg-gray-950 text-white rounded-xl py-3 text-sm font-medium hover:bg-gray-800 transition-colors"
               >
                 {copied ? <><Check className="w-4 h-4 text-green-400" /> Copied!</> : <><Share2 className="w-4 h-4" /> Copy share link</>}
@@ -409,6 +411,7 @@ export default function ResultsPage() {
         <div className="text-center">
           <button
             onClick={() => router.push("/audit")}
+            aria-label="Edit audit inputs"
             className="text-sm text-gray-400 hover:text-gray-600 transition-colors"
           >
             ← Edit my inputs and re-run
