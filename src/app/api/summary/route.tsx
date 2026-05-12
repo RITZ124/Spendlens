@@ -24,7 +24,7 @@ export async function POST(req: NextRequest) {
     });
 
     const completion = await groq.chat.completions.create({
-      model: "llama-3.1-70b-versatile",
+      model: "llama-3.3-70b-versatile",
       max_tokens: 180,
       temperature: 0.7,
       messages: [
