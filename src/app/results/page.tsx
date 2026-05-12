@@ -13,7 +13,7 @@ import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, Cell } from 
 import { runAudit, detectDuplicateTools } from "@/lib/auditEngine";
 import { getToolDisplayName } from "@/lib/pricingData";
 import type { AuditInput, AuditResult, ToolRecommendation } from "@/types";
-
+import { generateAuditPdf } from "@/lib/generatePdf";
 const STORAGE_KEY = "spendlens_audit_input";
 
 // ─── Animated number counter ─────────────────────────────────────────────────
@@ -144,13 +144,25 @@ export default function ResultsPage() {
   }
 
   const chartData = result.recommendations.map((r) => ({
-    name: getToolDisplayName(r.toolId),
-    current: r.currentMonthlySpend,
-    optimized: r.estimatedMonthlyCost,
-    savings: r.monthlySavings,
-  }));
+      name: getToolDisplayName(r.toolId),
+      current: r.currentMonthlySpend,
+      optimized: r.estimatedMonthlyCost,
+      savings: r.monthlySavings,
+    }));
+    const [pdfLoading, setPdfLoading] = useState(false);
 
-  return (
+  async function handleDownloadPdf() {
+    if (!result) return;
+    setPdfLoading(true);
+    try {
+      await generateAuditPdf(result, aiSummary, shareId ?? undefined);
+    } catch (err) {
+      console.error("PDF generation failed:", err);
+    } finally {
+      setPdfLoading(false);
+    }
+  }
+    return (
     <main className="min-h-screen bg-gray-50">
       {/* Header */}
       <div className="bg-white border-b border-gray-100 sticky top-0 z-10">
@@ -381,7 +393,7 @@ export default function ResultsPage() {
         )}
 
         {/* ── Share + Lead capture ─────────────────────────────────────────── */}
-        <div id="lead-capture" className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-8">
+        <div id="lead-capture" className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
           {/* Share link */}
           <div className="bg-white rounded-2xl border border-gray-200 p-5">
             <h3 className="font-semibold text-gray-900 mb-1">Share this audit</h3>
@@ -398,7 +410,33 @@ export default function ResultsPage() {
               <div className="w-full h-11 bg-gray-100 rounded-xl animate-pulse" />
             )}
           </div>
-
+        {/* PDF Export */}
+        <div className="bg-white rounded-2xl border border-gray-200 p-5">
+          <h3 className="font-semibold text-gray-900 mb-1">Download PDF report</h3>
+          <p className="text-sm text-gray-500 mb-4">
+            A formatted PDF of your full audit — share with your team or CFO.
+          </p>
+          <button
+            onClick={handleDownloadPdf}
+            disabled={pdfLoading}
+            aria-label="Download audit as PDF"
+            className="w-full flex items-center justify-center gap-2 bg-gray-100 text-gray-900 rounded-xl py-3 text-sm font-medium hover:bg-gray-200 transition-colors disabled:opacity-50"
+          >
+            {pdfLoading ? (
+              <>
+                <div className="w-4 h-4 border-2 border-gray-400 border-t-transparent rounded-full animate-spin" />
+                Generating PDF...
+              </>
+            ) : (
+              <>
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
+                Download PDF report
+              </>
+            )}
+          </button>
+        </div>
           {/* Email report */}
           <LeadCaptureCard
             auditId={shareId ?? ""}
