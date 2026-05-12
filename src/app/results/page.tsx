@@ -318,7 +318,7 @@ export default function ResultsPage() {
                 <XAxis dataKey="name" tick={{ fontSize: 12, fill: "#9ca3af" }} axisLine={false} tickLine={false} />
                 <YAxis tick={{ fontSize: 12, fill: "#9ca3af" }} axisLine={false} tickLine={false} tickFormatter={(v) => `$${v}`} />
                 <Tooltip
-                  formatter={(value: number, name: string) => [`$${value}/mo`, name === "current" ? "Current" : "Optimized"]}
+                  formatter={(value, name) => [`$${Number(value)}/mo`, name === "current" ? "Current" : "Optimized"]}
                   contentStyle={{ borderRadius: 12, border: "1px solid #e5e7eb", boxShadow: "0 4px 16px rgba(0,0,0,0.06)" }}
                 />
                 <Bar dataKey="current" name="current" radius={[6, 6, 0, 0]} fill="#e5e7eb" />
