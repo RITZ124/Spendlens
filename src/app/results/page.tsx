@@ -65,7 +65,7 @@ export default function ResultsPage() {
   const [summaryLoading, setSummaryLoading] = useState(false);
   const [copied, setCopied] = useState(false);
   const [shareId, setShareId] = useState<string | null>(null);
-
+  const [pdfLoading, setPdfLoading] = useState(false);
   useEffect(() => {
     try {
       const raw = localStorage.getItem(STORAGE_KEY);
@@ -149,8 +149,6 @@ export default function ResultsPage() {
       optimized: r.estimatedMonthlyCost,
       savings: r.monthlySavings,
     }));
-    const [pdfLoading, setPdfLoading] = useState(false);
-
   async function handleDownloadPdf() {
     if (!result) return;
     setPdfLoading(true);
