@@ -161,19 +161,41 @@
 - Fix any remaining Lighthouse issues
 - Polish mobile UI on results page
 
-## Day 5 — YYYY-MM-DD
+## Day 5 — 2025-05-12
 
-**Hours worked:** X
+**Hours worked:** 4
 
-**What I did:** ...
+**What I did:**
+- Built PDF export feature (bonus feature from assignment spec)
+- Created `src/lib/generatePdf.ts` using jsPDF — generates a fully styled
+  A4 PDF with header, savings hero, per-tool breakdown, summary table,
+  Credex section, and page numbers
+- Used dynamic imports for jsPDF and html2canvas so the libraries only
+  load when the user clicks "Download PDF" — keeps main bundle small
+- Added PDF download button to results page with loading state
+- Expanded share/lead/PDF grid to 3 columns on large screens
+- Conducted user interview 1 — [initials], [role] — [key insight]
+- Conducted user interview 2 — [initials], [role] — [key insight]
+- Updated USER_INTERVIEWS.md with notes from both conversations
 
-**What I learned:** ...
+**What I learned:**
+- jsPDF's coordinate system starts from top-left, Y increases downward —
+  need to track current Y position manually and add page breaks explicitly
+- Dynamic imports (`await import(...)`) in Next.js reduce initial bundle
+  size significantly — jsPDF is ~300KB, no reason to load it on page mount
+- `doc.splitTextToSize()` is essential for wrapping long strings in jsPDF —
+  without it, text overflows off the page edge
 
-**Blockers / what I'm stuck on:** ...
+**Blockers / what I'm stuck on:**
+- Third user interview scheduled for tomorrow
+- Need to update USER_INTERVIEWS.md with design changes based on feedback
 
-**Plan for tomorrow:** ...
-
----
+**Plan for tomorrow:**
+- Conduct third user interview
+- Complete USER_INTERVIEWS.md
+- Final Lighthouse check on all pages
+- Write DEVLOG Day 6
+- Review all 12 markdown files for completeness before submission
 
 ## Day 6 — YYYY-MM-DD
 
