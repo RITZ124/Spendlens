@@ -60,7 +60,7 @@ export default async function SharePage({ params }: Props) {
   const { data, error } = await supabaseAdmin
     .from("audits")
     .select("*")
-    .eq("id", params.id)
+    .eq("share_id", params.id)
     .single();
 
   if (error || !data) notFound();
