@@ -13,7 +13,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { data } = await supabaseAdmin
     .from("audits")
     .select("total_monthly_savings, total_monthly_spend, savings_percentage")
-    .eq("id", params.id)
+    .eq("share_id", params.id)
     .single();
 
   if (!data) {
