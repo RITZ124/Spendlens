@@ -7,7 +7,7 @@ Documentation of all LLM prompts used in SpendLens, as required by the Credex as
 ## AI Summary Prompt
 
 **Location:** `src/app/api/summary/route.ts`
-**Model:** `llama-3.1-70b-versatile` via Groq Cloud
+**Model:** `llama-3.3-70b-versatile` via Groq Cloud
 **Why Groq over Anthropic API:** Groq provides 14,400 free requests/day with ~500 token/s inference speed — the summary appears in under 2 seconds, vs a noticeable spinner with other providers. For a summary that appears live on the results page, latency is UX.
 
 ### System Prompt
@@ -54,7 +54,7 @@ Early version asked for a bulleted list. The results page is designed for a pros
 Passing all recommendations into the prompt caused the model to try to address each one, making summaries too long. Capped at 3 recommendations (`slice(0, 3)`) and the output became more focused.
 
 ### Attempt 4 — Using Anthropic API directly
-Tried `claude-3-haiku-20240307` first. The quality was great but the free tier token limits made it impractical for a public tool. Groq's llama-3.1-70b is comparable quality at much higher free throughput.
+Tried `claude-3-haiku-20240307` first. The quality was great but the free tier token limits made it impractical for a public tool. Groq's llama-3.3-70b is comparable quality at much higher free throughput.
 
 ---
 

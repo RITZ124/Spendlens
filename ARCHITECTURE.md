@@ -20,7 +20,7 @@ flowchart TD
     C -->|POST /api/audit| E[Supabase: audits table]
     E -->|share ID nanoid 8| C
 
-    C -->|POST /api/summary| F[Groq API\nllama-3.1-70b]
+    C -->|POST /api/summary| F[Groq API\nllama-3.3-70b]
     F -->|100-word summary| C
 
     C -->|user submits email| G[POST /api/leads]
@@ -61,7 +61,7 @@ sequenceDiagram
     SB->>API: Share ID
     API->>U: { id: "abc12345" }
     U->>API: POST /api/summary (audit numbers)
-    API->>GR: llama-3.1-70b prompt
+    API->>GR: llama-3.3-70b prompt
     GR->>API: 100-word summary
     API->>U: { summary: "..." }
     U->>U: Render complete results
@@ -101,12 +101,12 @@ shadcn/ui components are copied into the project (not installed as a dependency)
 **Why service role key only in API routes:**
 The anon key is exposed in the browser bundle (`NEXT_PUBLIC_`). If RLS is configured correctly, this is safe — anon key can only read `audits` (public share data). All writes use the service role key server-side in API routes, which is never exposed to the client.
 
-### AI: Groq Cloud (llama-3.1-70b-versatile)
+### AI: Groq Cloud (llama-3.3-70b-versatile)
 
 **Why Groq over Anthropic API:**
 Groq's free tier provides 14,400 requests/day at ~500 tokens/second. At that speed, the AI summary appears in under 2 seconds without streaming — fast enough to feel instant. The Anthropic API free tier is far more restricted, and latency for this use case (100-word summary, one call per audit) would require streaming UI to avoid a bad experience.
 
-**Why llama-3.1-70b over smaller models:**
+**Why llama-3.3-70b over smaller models:**
 The summary needs to sound financially sharp and cite specific numbers. Smaller models (llama-3.1-8b) produced generic output that didn't reference the actual dollar amounts. 70b reliably follows the system prompt constraints.
 
 **Why AI is NOT used for the audit math:**
