@@ -87,7 +87,7 @@ vercel
 | Language | TypeScript (strict) |
 | Styling | Tailwind CSS + shadcn/ui |
 | Database | Supabase (Postgres) |
-| AI Summary | Groq Cloud (llama-3.1-70b-versatile) |
+| AI Summary | Groq Cloud (llama-3.3-70b-versatile) |
 | Email | Resend |
 | Charts | Recharts |
 | Animations | Framer Motion |
@@ -157,7 +157,7 @@ The LLM (Groq) is used only for the human-readable summary paragraph — a task 
 ### 2. Groq over Anthropic API for the summary
 The Anthropic API free tier has strict token limits, making it impractical for a public tool that could get hundreds of audits per day. Groq provides 14,400 free requests/day at ~500 tokens/second — fast enough that the summary appears without a noticeable loading state.
 
-This was a deliberate trade-off: lower model quality ceiling (llama-3.1-70b vs Claude Sonnet) for much higher free throughput and lower latency.
+This was a deliberate trade-off: lower model quality ceiling (llama-3.3-70b vs Claude Sonnet) for much higher free throughput and lower latency.
 
 ### 3. No login, email captured after value shown
 The spec required this, and it's also correct product design. Any email gate before the audit results would kill conversion. The results page shows full value — complete savings breakdown, AI summary, per-tool recommendations — before asking for an email.

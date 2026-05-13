@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   keywords: ["AI spending", "startup tools", "ChatGPT cost", "Cursor pricing", "AI audit", "SaaS optimization"],
   openGraph: {
     title: "SpendLens — Free AI Spend Audit",
-    description: "Most startups overpay for AI tools by 30–40%. Find out where you're wasting money in 2 minutes.",
+    description: "Most startups overpay for AI tools by 30–40%. Find out where You&apos;re wasting money in 2 minutes.",
     type: "website",
     url: process.env.NEXT_PUBLIC_APP_URL,
   },

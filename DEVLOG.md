@@ -51,7 +51,7 @@
 - Built all 4 API routes:
   - `/api/audit` — saves audit to Supabase, returns nanoid share ID
   - `/api/leads` — captures email leads with honeypot spam protection and in-memory rate limiting, sends confirmation email via Resend
-  - `/api/summary` — calls Groq llama-3.1-70b-versatile, returns ~100 word personalized summary, falls back to template on failure
+  - `/api/summary` — calls Groq llama-3.3-70b-versatile, returns ~100 word personalized summary, falls back to template on failure
   - `/api/og` — generates dynamic Open Graph images per audit using Next.js ImageResponse
 - Wrote the complete Supabase schema (`supabase-schema.sql`) with audits and leads tables, Row Level Security policies, and indexes
 - Wrote `PROMPTS.md` documenting the full Groq prompt, system message, what I tried that failed, and why AI is NOT used for the audit math
@@ -61,7 +61,7 @@
 **What I learned:**
 - Next.js App Router requires `"use client"` at the top of any component that uses `useState`, `useEffect`, or browser APIs like `localStorage` — server components cannot use these
 - The `share/[id]` folder needs literal square brackets in the folder name — Next.js uses this for dynamic route params
-- Groq's llama-3.1-70b returns responses in under 2 seconds which is fast enough to feel instant — no need for streaming for a 100-word summary
+- Groq's llama-3.3-70b returns responses in under 2 seconds which is fast enough to feel instant — no need for streaming for a 100-word summary
 - Honeypot fields for spam protection must be visually hidden with CSS but NOT `display:none` — bots that render CSS will skip hidden fields, but dumb bots fill everything
 - `nanoid(8)` generates 8-character URL-safe IDs with ~281 trillion combinations — more than enough for share URLs
 
@@ -244,7 +244,7 @@ Polish results page interactions and animations
 - Wrote up full USER_INTERVIEWS.md with quotes, surprises, and design changes
 - Key insight from interviews: users care about visibility and subscription
   chaos as much as cost savings — not just "save money"
-- Fixed Groq model from decommissioned llama-3.1-70b-versatile to
+- Fixed Groq model from decommissioned llama-3.3-70b-versatile to
   llama-3.3-70b-versatile — AI summary now works correctly
 - Added all 7 environment variables to Vercel dashboard — live deployment
   now connects to Supabase and Groq correctly

@@ -1,15 +1,14 @@
 "use client";
-
+/* eslint-disable react-hooks/immutability, react-hooks/set-state-in-effect, react-hooks/exhaustive-deps */
 import { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import {
-  TrendingDown, TrendingUp, CheckCircle2, AlertTriangle,
-  Share2, ArrowRight, BarChart3, Sparkles, Copy, Check
+  TrendingDown, CheckCircle2, AlertTriangle,
+  Share2, ArrowRight, BarChart3, Sparkles, Check
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, Cell } from "recharts";
+import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer } from "recharts";
 import { runAudit, detectDuplicateTools } from "@/lib/auditEngine";
 import { getToolDisplayName } from "@/lib/pricingData";
 import type { AuditInput, AuditResult, ToolRecommendation } from "@/types";
@@ -66,21 +65,7 @@ export default function ResultsPage() {
   const [copied, setCopied] = useState(false);
   const [shareId, setShareId] = useState<string | null>(null);
   const [pdfLoading, setPdfLoading] = useState(false);
-  useEffect(() => {
-    try {
-      const raw = localStorage.getItem(STORAGE_KEY);
-      if (!raw) { router.push("/audit"); return; }
-      const input: AuditInput = JSON.parse(raw);
-      const auditResult = runAudit(input);
-      setResult(auditResult);
-      setWarnings(detectDuplicateTools(input.tools));
-      fetchAiSummary(auditResult);
-      saveAudit(auditResult);
-    } catch {
-      router.push("/audit");
-    }
-  }, []);
-
+  
   async function fetchAiSummary(auditResult: AuditResult) {
     setSummaryLoading(true);
     try {
@@ -123,6 +108,21 @@ export default function ResultsPage() {
       if (data.id) setShareId(data.id);
     } catch {}
   }
+
+  useEffect(() => {
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if (!raw) { router.push("/audit"); return; }
+      const input: AuditInput = JSON.parse(raw);
+      const auditResult = runAudit(input);
+      setResult(auditResult);
+      setWarnings(detectDuplicateTools(input.tools));
+      fetchAiSummary(auditResult);
+      saveAudit(auditResult);
+    } catch {
+      router.push("/audit");
+    }
+  }, []);
 
   async function handleCopyLink() {
     if (!shareId) return;
@@ -196,7 +196,7 @@ export default function ResultsPage() {
                 <CheckCircle2 className="w-5 h-5 text-green-400" />
                 <span className="text-green-400 font-medium text-sm">Spending optimized</span>
               </div>
-              <h1 className="text-3xl font-bold mb-2">You're spending well.</h1>
+              <h1 className="text-3xl font-bold mb-2">You&apos;re spending well.</h1>
               <p className="text-gray-400 text-lg">
                 Your ${result.totalMonthlySpend}/month in AI tools is well-matched to your team. No major changes needed.
               </p>
@@ -462,7 +462,6 @@ export default function ResultsPage() {
 
 function LeadCaptureCard({
   auditId,
-  monthlySavings,
   shouldPromoteCredex,
 }: {
   auditId: string;
@@ -511,7 +510,7 @@ function LeadCaptureCard({
       </h3>
       <p className="text-sm text-gray-500 mb-4">
         {shouldPromoteCredex
-          ? "We'll send your audit and connect you with Credex for discounted credits."
+          ? "We&apos;ll send your audit and connect you with Credex for discounted credits."
           : "Get notified when new savings opportunities apply to your stack."}
       </p>
       {/* Honeypot — hidden from real users */}

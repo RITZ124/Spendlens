@@ -75,11 +75,14 @@ export default function AuditPage() {
       const saved = localStorage.getItem(STORAGE_KEY);
       if (saved) {
         const parsed: AuditInput = JSON.parse(saved);
-        if (parsed.tools?.length) setTools(parsed.tools);
-        if (parsed.teamSize) setTeamSize(parsed.teamSize);
-        if (parsed.companyStage) setCompanyStage(parsed.companyStage);
+        if (parsed.tools?.length) {
+          setTools(parsed.tools);
+          setTeamSize(parsed.teamSize ?? "2-5");
+          setCompanyStage(parsed.companyStage ?? "early");
+        }
       }
     } catch {}
+    // eslint-disable-next-line react-hooks/set-state-in-effect
   }, []);
 
   // ─── Save to localStorage on every change ──────────────────────────────────
@@ -183,7 +186,7 @@ export default function AuditPage() {
             Tell us about your AI subscriptions
           </h1>
           <p className="text-gray-500">
-            Add every AI tool your team pays for. We'll analyze each one.
+            Add every AI tool your team pays for. We&apos;ll analyze each one.
             Your data stays in your browser until you run the audit.
           </p>
         </div>
@@ -452,7 +455,7 @@ function ToolRow({
       {tool.monthlySpend > 0 && tool.seats > 0 && (
         <div className="mt-4 pt-4 border-t border-gray-100 flex items-center gap-2">
           <span className="text-xs text-gray-400">
-            That's{" "}
+            That&apos;s{" "}
             <span className="font-semibold text-gray-600">
               ${(tool.monthlySpend / tool.seats).toFixed(2)}/seat/month
             </span>

@@ -240,7 +240,7 @@ import type {
           recommendationType: "downgrade_plan",
           recommendedPlan: "pro",
           estimatedMonthlyCost: seats * 20,
-          reasoning: `Claude Max (${plan === "max_5x" ? "$100" : "$200"}/seat) is designed for users hitting Pro rate limits daily — if your team isn't maxing out Pro's generous limits, downgrading saves $${(monthlySpend - seats * 20).toFixed(0)}/mo.`,
+          reasoning: `Claude Max (${plan === "max_5x" ? "$100" : "$200"}/seat) is designed for users hitting Pro rate limits daily — if your team isn&apos;t maxing out Pro's generous limits, downgrading saves $${(monthlySpend - seats * 20).toFixed(0)}/mo.`,
           confidence: "medium",
         });
       }
@@ -310,7 +310,7 @@ import type {
         recommendationType: "downgrade_plan",
         recommendedPlan: "plus",
         estimatedMonthlyCost: seats * 20,
-        reasoning: `ChatGPT Team ($30/seat) is designed for organizations needing centralized billing and admin — ${seats} users on Plus ($20/seat) saves $${seats * 10}/mo if you don't need SSO or audit logs.`,
+        reasoning: `ChatGPT Team ($30/seat) is designed for organizations needing centralized billing and admin — ${seats} users on Plus ($20/seat) saves $${seats * 10}/mo if you don&apos;t need SSO or audit logs.`,
         confidence: "medium",
       });
     }
@@ -421,14 +421,14 @@ import type {
         recommendedTool: "cursor",
         recommendedPlan: "pro",
         estimatedMonthlyCost: seats * 20,
-        reasoning: `Gemini Advanced isn't a code editor — for coding workflows, Cursor Pro ($20/seat) provides direct IDE integration and is purpose-built for the use case at the same price.`,
+        reasoning: `Gemini Advanced isn&apos;t a code editor — for coding workflows, Cursor Pro ($20/seat) provides direct IDE integration and is purpose-built for the use case at the same price.`,
         confidence: "high",
       });
     }
   
     // Rule G2: Already on free — nothing to save
     if (plan === "free") {
-      return makeOptimalResult(entry, "You're on the Gemini free tier — no spend to optimize here.");
+      return makeOptimalResult(entry, "You&apos;re on the Gemini free tier — no spend to optimize here.");
     }
   
     // Rule G3: Business (Workspace) — check if actually using Workspace features
@@ -493,7 +493,7 @@ import type {
       );
       const totalSpend = codingTools.reduce((s, t) => s + t.monthlySpend, 0);
       warnings.push(
-        `You're paying for ${names.join(" + ")} simultaneously ($${totalSpend}/mo) — developers rarely get meaningful value from two AI code editors. Pick one.`
+        `You&apos;re paying for ${names.join(" + ")} simultaneously ($${totalSpend}/mo) — developers rarely get meaningful value from two AI code editors. Pick one.`
       );
     }
   
