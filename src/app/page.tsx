@@ -85,7 +85,7 @@ export default function HomePage() {
 
           <p className="text-xl text-gray-500 max-w-2xl mx-auto mb-10 leading-relaxed">
             Most startups overpay for AI tools by 30–40%. SpendLens audits your subscriptions,
-            finds exactly where you're wasting money, and tells you what to do about it.
+            finds exactly where You&apos;re wasting money, and tells you what to do about it.
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -217,7 +217,7 @@ export default function HomePage() {
               className="p-6 rounded-2xl border border-gray-100 bg-white"
             >
               <div className="text-2xl font-bold text-green-600 mb-3">{t.savings} saved</div>
-              <p className="text-gray-700 text-sm leading-relaxed mb-4">"{t.quote}"</p>
+              <p className="text-gray-700 text-sm leading-relaxed mb-4">&quot;{t.quote}&quot;</p>
               <div className="flex items-center gap-2">
                 <div className="w-7 h-7 rounded-full bg-gray-100 flex items-center justify-center">
                   <Users className="w-3.5 h-3.5 text-gray-400" />
@@ -232,7 +232,7 @@ export default function HomePage() {
       {/* CTA */}
       <section className="bg-gray-950 py-20">
         <div className="max-w-2xl mx-auto px-6 text-center">
-          <h2 className="text-4xl font-bold text-white mb-4">Ready to find out what you're wasting?</h2>
+          <h2 className="text-4xl font-bold text-white mb-4">Ready to find out what You&apos;re wasting?</h2>
           <p className="text-gray-400 mb-8">Takes 2 minutes. Completely free. No account needed.</p>
           <Link href="/audit">
             <Button
