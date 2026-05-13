@@ -4,7 +4,7 @@ import { supabaseAdmin } from "@/lib/supabase";
 import SharePageClient from "./SharePageClient";
 
 interface Props {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }
 
 // ─── Metadata for OG / Twitter card ──────────────────────────────────────────
