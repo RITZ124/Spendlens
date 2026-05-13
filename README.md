@@ -8,20 +8,22 @@ SpendLens is a free web app that audits how much your startup spends on AI tools
 
 ---
 
+
 ## Screenshots
 
-> *(Add screenshots here after deploying — Credex evaluators check this)*
->
-> Suggested screenshots:
-> 1. Landing page hero
-> 2. Audit form with 2–3 tools filled in
-> 3. Results page showing savings (use a high-savings example)
-> 4. Share page public view
-> 5. Mobile view of results page
+### Landing Page
+![Landing page](public/screenshots/screenshot-1-landing.png)
 
-**Live demo:** [your-vercel-url.vercel.app](https://your-vercel-url.vercel.app)
+### Audit Form
+![Audit form](public/screenshots/screenshot-2-form.png)
 
----
+### Results Page
+![Results page](public/screenshots/screenshot-3-results.png)
+
+### Share Page
+![Share page](public/screenshots/screenshot-4-share.png)
+
+**Live demo:** https://spendlens-pi.vercel.app/
 
 ## Quick Start
 
