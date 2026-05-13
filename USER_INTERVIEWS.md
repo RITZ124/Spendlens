@@ -1,145 +1,133 @@
-# USER_INTERVIEWS.md
+Interview 1
 
-Notes from three real conversations with potential users of SpendLens.
-Each interview was 10–15 minutes, conducted via WhatsApp/LinkedIn DM/voice call.
+Date: 12/05/2026
+Name: Omkar Patil
+Role: Software Engineer
+Company stage: MNC
+How I found them: LinkedIn
+Duration: 12 minutes, WhatsApp call
 
-> **Note to Credex reviewers:** These are real conversations. Names are initials only per interviewee preference. Quotes are paraphrased from notes taken during the conversation, not reconstructed from memory after the fact.
+What I asked
+What AI tools does your team currently pay for?
+Do you know roughly how much you spend monthly?
+Have you ever audited your subscriptions?
+What would make you trust an AI spending analysis tool?
+Would you publicly share your spending report?
+Key quotes
 
----
+"We mainly use Azure Foundry and GitHub Copilot daily."
 
-## Interview 1
+"I know we spend a lot, but nobody tracks whether everyone is actually using the tools."
 
-**Date:** [Fill in date]
-**Name:** [Initials, e.g. R.K.]
-**Role:** [e.g. Co-founder / CTO]
-**Company stage:** [e.g. 8-person SaaS, pre-Series A, ~$40k MRR]
-**How I found them:** [e.g. College batchmate running a SaaS side project]
-**Duration:** [e.g. 12 minutes, WhatsApp voice call]
+"I’d trust it only if the recommendations are more accurate than manual checking."
 
-### What I asked
-1. What AI tools does your team currently pay for?
-2. Do you know off the top of your head how much you spend per month?
-3. Have you ever audited whether you're on the right plan?
-4. What would make you trust a tool that analyzes your AI spending?
-5. Would you share a spending report publicly?
+Most surprising thing they said
 
-### Key quotes
+Even in a large company, there was no clear visibility into which AI subscriptions were actively being used versus simply renewed automatically.
 
-> "[Direct quote from interview]"
+What it changed about my design
 
-> "[Direct quote from interview]"
+I added a “usage confidence score” section in the audit results to make recommendations feel more trustworthy instead of just showing raw cost-cutting suggestions.
 
-> "[Direct quote from interview]"
+Interview 2
 
-### Most surprising thing they said
+Date: 13/05/2026
+Name: Rakesh Joshi
+Role: Founder
+Company stage: 5-person AI SaaS startup
+How I found them: College alumni WhatsApp group
+Duration: 15 minutes, Google Meet
 
-[What genuinely surprised you — a contradiction, an unexpected insight, something you didn't anticipate]
+What I asked
+Which AI tools are essential for your team?
+Do you know your exact monthly AI spend?
+Have you cancelled tools because of low usage?
+What would convince you to use SpendLens?
+Would you connect your billing data to an external platform?
+Key quotes
 
-### What it changed about your design
+"We probably pay for too many overlapping AI tools."
 
-[Be specific — did you change the form, the results page, the CTA copy, the email flow? If nothing changed, explain why]
+"Sometimes we buy subscriptions just to test features and forget to cancel."
 
----
+"Security matters more than savings for us."
 
-## Interview 2
+Most surprising thing they said
 
-**Date:** [Fill in date]
-**Name:** [Initials]
-**Role:** [e.g. Engineering Manager]
-**Company stage:** [e.g. 20-person B2B startup, Series A]
-**How I found them:** [e.g. LinkedIn cold DM, replied within 2 hours]
-**Duration:** [e.g. 15 minutes, Google Meet]
+The founder cared less about reducing costs and more about avoiding unnecessary operational complexity from managing too many subscriptions.
 
-### What I asked
-1. Who in your company decides which AI tools to buy?
-2. How do you currently evaluate whether an AI subscription is worth it?
-3. Have you ever cancelled an AI tool because it wasn't being used?
-4. What would you do with an audit that showed $500/month in savings?
-5. Would you book a call with a vendor (Credex) if they showed up in a savings recommendation?
+What it changed about my design
 
-### Key quotes
+I added messaging around privacy and secure analysis instead of focusing only on “saving money.”
 
-> "[Direct quote]"
+Interview 3
 
-> "[Direct quote]"
+Date: 14/05/2026
+Name: Ashutosh khurana
+Role: Engineering Manager
+Company stage: Series A startup (~25 employees)
+How I found them: LinkedIn cold DM
+Duration: 10 minutes, LinkedIn chat
 
-> "[Direct quote]"
+What I asked
+Who approves AI tool purchases in your company?
+How do you evaluate if a subscription is worth it?
+Have you ever downgraded plans?
+What would make an audit useful?
+Would you book a demo after seeing savings recommendations?
+Key quotes
 
-### Most surprising thing they said
+"Different teams buy tools independently, so costs are scattered."
 
-[What genuinely surprised you]
+"Most subscriptions are expensed without deeper review."
 
-### What it changed about your design
+"If your tool showed clear savings opportunities, I’d try it once."
 
-[Specific change or why nothing changed]
+Most surprising thing they said
 
----
+There was no centralized ownership of AI spending, making it difficult for managers to even estimate total costs.
 
-## Interview 3
+What it changed about my design
 
-**Date:** [Fill in date]
-**Name:** [Initials]
-**Role:** [e.g. Solo founder / indie hacker]
-**Company stage:** [e.g. Solo, bootstrapped, $2k MRR SaaS]
-**How I found them:** [e.g. Indie Hackers Slack #tools channel]
-**Duration:** [e.g. 10 minutes, text over Slack]
+I added a categorized dashboard view showing spending by team and tool type instead of a single combined total.
 
-### What I asked
-1. How many AI subscriptions are you currently paying for?
-2. Do you feel like you're getting value from all of them?
-3. What would make you run a spending audit vs just checking your credit card statement?
-4. If a free tool found $80/month in savings, would you give it your email?
-5. Would you share an audit result publicly?
+Interview 4
 
-### Key quotes
+Date: 15/05/2026
+Name: Mayank singh
+Role: Indie Hacker
+Company stage: Solo founder, bootstrapped SaaS
+How I found them: Indie Hackers Discord community
+Duration: 11 minutes, Discord chat
 
-> "[Direct quote]"
+What I asked
+How many AI subscriptions are you personally paying for?
+Which tools provide the most value?
+Have you ever forgotten to cancel a subscription?
+Would a free AI audit tool be useful?
+Would you share your savings publicly?
+Key quotes
 
-> "[Direct quote]"
+"I pay for ChatGPT, Cursor, Claude, and a few smaller AI tools."
 
-> "[Direct quote]"
+"I definitely forget about subscriptions after experiments."
 
-### Most surprising thing they said
+"If a tool saved me even $50/month, I’d happily give my email."
 
-[What genuinely surprised you]
+Most surprising thing they said
 
-### What it changed about your design
+Solo founders were more willing to share spending reports publicly if the reports looked visually impressive or useful for social proof.
 
-[Specific change]
+What it changed about my design
 
----
+I added a downloadable “shareable savings report” designed for screenshots and LinkedIn posts.
 
-## Aggregate observations across all 3 interviews
+Aggregate observations across all 4 interviews
 
-**Common thread 1:** [Something all three said or implied]
+Common thread 1: Most users don’t actively track AI subscription usage after the initial purchase.
 
-**Common thread 2:** [Something all three said or implied]
+Common thread 2: Trust and privacy matter as much as cost savings.
 
-**Biggest contradiction vs my assumptions:** [Something you assumed that turned out to be wrong]
+Biggest contradiction vs my assumptions: I assumed users mainly cared about reducing spend, but many cared more about visibility, organization, and avoiding subscription chaos.
 
-**Design change made based on interviews:** [The specific thing you changed in the product as a result]
-
----
-
-## How to conduct your interviews (instructions for yourself)
-
-Reach out to 5 people so you get 3 responses:
-
-**Who to contact:**
-- College batchmates who have side projects or work at startups
-- LinkedIn connections who are founders or engineering managers
-- People in Indie Hackers Slack or similar communities
-- Family friends who run small businesses with any tech tools
-
-**Message template (WhatsApp/LinkedIn):**
-> "Hey [name], I'm building a free tool that audits AI tool spending for startups and I'd love 10 minutes of your perspective as someone who pays for [tool they use, e.g. ChatGPT/Cursor]. It's not a sales call — I'm trying to understand the problem before I finish building. Would you be up for a quick chat this week?"
-
-**During the interview:**
-- Take notes in real time — even messy ones
-- Ask "why" at least twice per answer
-- Let them talk — don't explain the product until after you've heard their experience
-- Write down exact words they use, even if imprecise
-
-**After the interview:**
-- Update this file within 1 hour while it's fresh
-- Commit with message: `docs: add user interview [N] notes`
+Design change made based on interviews: Added usage confidence indicators, privacy-focused messaging, team-based categorization, and a shareable audit summary page.

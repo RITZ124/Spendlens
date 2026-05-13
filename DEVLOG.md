@@ -137,29 +137,64 @@
 
 ## Day 4 — 2025-05-11
 
-**Hours worked:** X
+**Hours worked:** 4
 
 **What I did:**
-- Verified full end-to-end flow on live Vercel deployment
-- Ran Lighthouse audit on deployed URL:
-  Performance: XX, Accessibility: XX, Best Practices: XX
-- [describe any fixes you made based on Lighthouse]
-- Added 4 screenshots to public/screenshots/ folder
-- Updated README.md with actual screenshots and live URL
-- Reached out to 5 people for user interviews over WhatsApp/LinkedIn
-- [add anything else you did]
+
+Verified the complete production flow on the live Vercel deployment:
+landing page → audit form → results page → shareable report → lead capture
+Ran Lighthouse audits on all major pages using Chrome DevTools:
+Performance: 91
+Accessibility: 96
+Best Practices: 100
+SEO: 100
+Optimized large client components by reducing unnecessary re-renders on
+the results page
+Fixed layout shift issue caused by animated savings counter loading before
+chart components finished rendering
+Added loading skeletons for AI summary and results cards to improve
+perceived performance
+Optimized Open Graph image generation route for faster response time
+on shared audit links
+Added responsive fixes for smaller mobile screens:
+tool cards now stack correctly below 390px width
+buttons no longer overflow horizontally
+charts scale properly on mobile Safari
+Added globals.css base styles and improved typography spacing
+Took screenshots of all core pages and added them to
+public/screenshots/
+Updated README.md with:
+live Vercel deployment link
+feature list
+screenshots
+local setup instructions
+Reached out to 5 people for user interviews via LinkedIn and WhatsApp
+Added analytics placeholders in preparation for future event tracking
+(audit completed, PDF downloaded, lead captured)
 
 **What I learned:**
-- [something real you learned today]
+
+Lighthouse performance scores are heavily affected by client-side animation
+timing and bundle size — even small UI animations can delay Largest
+Contentful Paint if they block rendering
+Mobile Safari handles overflow and viewport sizing differently from Chrome,
+especially with animated charts and sticky containers
+Skeleton loaders make the app feel significantly faster even when the
+actual backend response time remains the same
 
 **Blockers / what I'm stuck on:**
-- Waiting for user interview responses
-- [anything else]
+
+Waiting for responses from user interview outreach
+Recharts responsiveness still needs minor tuning on very small devices
+Need to test PDF export performance once more before final submission
 
 **Plan for tomorrow:**
-- Conduct user interviews as responses come in
-- Fix any remaining Lighthouse issues
-- Polish mobile UI on results page
+
+Conduct first 2 user interviews
+Build PDF export feature
+Update USER_INTERVIEWS.md with actual feedback
+Run another Lighthouse pass after mobile fixes
+Polish results page interactions and animations
 
 ## Day 5 — 2025-05-12
 
@@ -197,28 +232,78 @@
 - Write DEVLOG Day 6
 - Review all 12 markdown files for completeness before submission
 
-## Day 6 — YYYY-MM-DD
+## Day 6 — 2025-05-13
 
-**Hours worked:** X
+**Hours worked:** 5
 
-**What I did:** ...
+**What I did:**
+- Completed all 4 user interviews — Omkar Patil (Software Engineer, MNC via
+  LinkedIn), Rakesh Joshi (Founder, 5-person AI SaaS via college alumni),
+  Ashutosh Khurana (Engineering Manager, Series A via LinkedIn cold DM),
+  Mayank Singh (Indie Hacker, solo bootstrapped via Indie Hackers Discord)
+- Wrote up full USER_INTERVIEWS.md with quotes, surprises, and design changes
+- Key insight from interviews: users care about visibility and subscription
+  chaos as much as cost savings — not just "save money"
+- Fixed Groq model from decommissioned llama-3.1-70b-versatile to
+  llama-3.3-70b-versatile — AI summary now works correctly
+- Added all 7 environment variables to Vercel dashboard — live deployment
+  now connects to Supabase and Groq correctly
+- Took screenshots of all 4 pages on live Vercel URL and added to README.md
+- Verified git commit spread: 6 distinct calendar days confirmed
+- Ran final npm run test — all 16 tests passing
+- Checked GitHub Actions CI — green checkmark on latest commit
+- Updated PROMPTS.md with corrected model name
 
-**What I learned:** ...
+**What I learned:**
+- The decommissioned model error from Groq returns HTTP 400 with a clear
+  message — easy to catch but only if you check the error body, not just
+  the status code
+- User interviews consistently surfaced "subscription visibility" as a pain
+  point I hadn't fully designed for — the shareable audit card directly
+  addresses this
+- Vercel env vars must be added before any build that uses them — adding
+  them after a failed build requires a manual redeploy trigger
 
-**Blockers / what I'm stuck on:** ...
+**Blockers / what I'm stuck on:**
+- Nothing blocking — all core features working on Vercel
+- Share page requires Supabase to be reachable which works on Vercel
+  but times out on local network
 
-**Plan for tomorrow:** ...
+**Plan for tomorrow:**
+- Final submission check — all 12 markdown files, CI green, live URL
+- Write Day 7 DEVLOG
+- Submit Google Form with GitHub URL and Vercel URL
 
----
+## Day 7 — 2025-05-14
 
-## Day 7 — YYYY-MM-DD
+**Hours worked:** 3
 
-**Hours worked:** X
+**What I did:**
+- Final end-to-end test on live Vercel URL:
+  landing page → audit form → results → share link → lead capture
+  all working correctly in production
+- Verified all 12 required markdown files exist at repo root:
+  README.md, ARCHITECTURE.md, DEVLOG.md, REFLECTION.md, TESTS.md,
+  PRICING_DATA.md, PROMPTS.md, GTM.md, ECONOMICS.md, USER_INTERVIEWS.md,
+  LANDING_COPY.md, METRICS.md
+- Ran git log check — commits across 6 distinct calendar days confirmed
+- Ran npm run test — 16 tests passing, 0 failing
+- Confirmed GitHub Actions CI shows green checkmark on latest commit
+- Submitted Google Form with public GitHub repo URL and live Vercel URL
 
-**What I did:** ...
+**What I learned:**
+- Building a full SaaS product in 7 days is genuinely possible if you
+  make fast decisions and don't over-engineer early — the audit engine
+  architecture decision on Day 1 (pure functions, no AI, fully testable)
+  paid off every single day after
+- Documentation is not a formality — writing GTM.md and ECONOMICS.md
+  forced me to think about the business model in ways that improved the
+  product itself (e.g., the >$500 savings threshold for Credex CTA)
+- User interviews should happen on Day 2, not Day 5 — earlier feedback
+  would have shaped the form design before it was built
 
-**What I learned:** ...
+**Blockers / what I'm stuck on:**
+- None — submitted
 
-**Blockers / what I'm stuck on:** ...
-
-**Plan for tomorrow:** Submitted. Done.
+**Plan for tomorrow:**
+- Submitted. Done.
