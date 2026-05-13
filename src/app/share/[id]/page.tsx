@@ -9,12 +9,18 @@ interface Props {
 
 // ─── Metadata for OG / Twitter card ──────────────────────────────────────────
 
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: Props): Promise<Metadata> {
+  const { id } = await params;
+
   const { data } = await supabaseAdmin
     .from("audits")
-    .select("total_monthly_savings, total_monthly_spend, savings_percentage")
-    .eq("share_id", params.id)
-    .single();
+    .select(
+      "total_monthly_savings, total_monthly_spend, savings_percentage"
+    )
+    .eq("share_id", id)
+    .maybeSingle();
 
   if (!data) {
     return { title: "Audit not found — SpendLens" };
@@ -34,7 +40,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       ? `This team is spending $${spend}/month on AI tools and could save ${pct}% ($${savings * 12}/year). Audit yours free at SpendLens.`
       : `This team spends $${spend}/month on AI tools and is already well-optimized. Audit yours free at SpendLens.`;
 
-  const ogImageUrl = `${process.env.NEXT_PUBLIC_APP_URL}/api/og?id=${params.id}`;
+  const ogImageUrl = `${process.env.NEXT_PUBLIC_APP_URL}/api/og?id=${id}`;
 
   return {
     title,
@@ -57,13 +63,18 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 // ─── Page ─────────────────────────────────────────────────────────────────────
 
 export default async function SharePage({ params }: Props) {
+  const { id } = await params;
+
   const { data, error } = await supabaseAdmin
     .from("audits")
     .select("*")
-    .eq("share_id", params.id)
-    .single();
+    .eq("share_id", id)
+    .maybeSingle();
 
-  if (error || !data) notFound();
+  if (error || !data) {
+    console.error(error);
+    notFound();
+  }
 
-  return <SharePageClient auditData={data} shareId={params.id} />;
+  return <SharePageClient auditData={data} shareId={id} />;
 }
