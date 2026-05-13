@@ -35,7 +35,11 @@ export default function SharePageClient({
   auditData: Record<string, unknown>;
   shareId: string;
 }) {
-  const pub = auditData.public_data as PublicData;
+  const pub = (
+    typeof auditData.public_data === "string"
+      ? JSON.parse(auditData.public_data)
+      : auditData.public_data
+  ) as PublicData;
   const isOptimal = pub.isAlreadyOptimal;
 
   return (
